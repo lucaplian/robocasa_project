@@ -1,0 +1,59 @@
+
+rules: 
+  locations: [fridge,counter,sink,stove,cabinet]
+  objects: [egg_1, egg_2,pot,water_source, bowl]
+  timer_seconds: 30..1800
+  on_missing_object: abort_with_notify
+
+preconditions:
+  - assert: object_at_location;  params: {object: pot, location: cabinet}
+  - assert: object_at_location;  params: {object: egg_1, location: fridge}
+  - assert: object_at_location;  params: {object: egg_2, location: fridge}
+  - assert: object_at_location;  params: {object: bowl, location: cabinet}
+  - assert: water_source_available;  params: {object: water_source, location: sink}
+  
+plan:
+  # put eggs in counter
+  - action: OpenSingleDoor; params: {appliance: fridge}
+  - action: PickPlaceCabinetToCounter; params: {cabinet_location: fridge, counter_location: counter, object: egg_1}
+  - action: PickPlaceCabinetToCounter; params: {cabinet_location: fridge, counter_location: counter, object: egg_2}
+  - action: CloseSingleDoor; params: {appliance: fridge}
+
+  # pick up the pot from cabinet, put it in the counter, fill it up at sink, and place it on the stove 
+  - action: OpenDoubleDoor; params: {appliance: cabinet}
+  - action: PickPlaceCabinetToCounter; params: {cabinet_location: cabinet, counter_location: counter, object: pot}
+  - action: CloseDoubleDoor; params: {appliance: cabinet}
+  - action: PickPlaceCounterToSink; params: {counter_location: counter, sink_location: sink, object: pot}
+  - action: TurnOnSinkFaucet; params: {}  
+  - action: TurnSinkSpout; params: {side: right}  
+  - action: Wait; params: {seconds: 5}
+  - action: TurnOffSinkFaucet; params: {}  
+  - action: PickPlaceSinkToCounter; params: {sink_location: sink, counter_location: counter, object: pot} 
+  - action: PickPlaceCounterToStove; params: {counter_location: counter, stove_location: stove, object: pot} 
+  - action: TurnOnStove; params: {}  
+
+  # place eggs on stove
+  - action: PickPlaceCounterToStove; params: {counter_location: counter, stove_location: stove, object: egg_1} 
+  - action: PickPlaceCounterToStove; params: {counter_location: counter, stove_location: stove, object: egg_2} 
+
+  # boil the eggs for 8 minutes
+  - action: SetTimer; params: {seconds: 480}
+  - action: WaitUntil; params: {condition: timer_done}
+  - action: TurnOffStove; params: {}  
+
+  # fill up the bowl with water
+  - action: OpenDoubleDoor; params: {appliance: cabinet}
+  - action: PickPlaceCabinetToCounter; params: {cabinet_location: cabinet, counter_location: counter, object: bowl}
+  - action: CloseDoubleDoor; params: {appliance: cabinet}
+  - action: PickPlaceCounterToSink; params: {counter_location: counter, sink_location: sink, object: bowl}
+  - action: TurnOnSinkFaucet; params: {}  
+  - action: TurnSinkSpout; params: {side: right}  
+  - action: Wait; params: {seconds: 5}
+  - action: TurnOffSinkFaucet; params: {}  
+  - action: PickPlaceSinkToCounter; params: {sink_location: sink, counter_location: counter, object: bowl}
+  
+  #place eggs to bowl
+  - action: PickPlaceStoveToCounter; params: {stove_location: stove, counter_location: bowl, object: egg_1}
+  - action: PickPlaceStoveToCounter; params: {stove_location: stove, counter_location: bowl, object: egg_2}
+  - action: SetTimer; params: {seconds: 300}
+  - action: WaitUntil; params: {condition: timer_done}
