@@ -1,0 +1,57 @@
+flowchart TD
+    %% put eggs in counter
+    A(OpenSingleDoor; param: fridge)
+    A --> A1{Check eggs ≥ 2?}:::fallback
+    A1-->|No| D[NotifyUser]
+    D -->|Fail| D1[Abort]
+    A1 -->|Yes| A2[Continue]
+    A2 --> A3[PickPlaceCabinetToCounter; param: egg_1 \n Retry once]
+    A3 --> A4[PickPlaceCabinetToCounter; param: egg_2 \n Retry once]
+    A4 --> A5[CloseSingleDoor; param: fridge]
+    
+    %% pick up the pot from cabinet, put it in the counter, fill it up at sink, and place it on the stove 
+    A5 --> B[Prepare Pot]
+    B --> B1[OpenDoubleDoor; param: cabinet]
+    B1 --> B2[PickPlaceCabinetToCounter; param: pot \n Retry once]
+    B2 --> B3[PickPlaceCounterToSink; param: pot \n Retry once] 
+    B3 --> |SUCCESS| B4[TurnOnSinkFaucet; param: sink]
+    B4 --> B5[TurnSinkSpout; param: side=right]
+    B5 --> B6[Wait; param: seconds = 5]
+    B6 --> B7[TurnOffSinkFaucet; param: sink]
+    B7 --> B8[PickPlaceSinkToCounter; param: pot \n Retry once]
+    B8 --> B9[PickPlaceCounterToStove; param: pot \n Retry once]
+    B9 --> B10[TurnOnStove \n Timeout 30s]
+    
+    %% place eggs on stove
+    B10 --> |Yes| C[Add eggs]
+    C -->  C1[PickPlaceCounterToStove; param: egg_1 \n Retry once]
+    C1 --> C2[PickPlaceCounterToStove; param: egg_2 \n Retry once]
+    
+    %% boil the eggs for 8 minutes
+    C2 --> E[Boil]
+    E --> E1[SetTimer; param: seconds=480]
+    E1 --> E2[WaitUntil; param: timer_done]
+    E2 --> |Yes| E3[TurnOffStove]
+
+    %% fill up the bowl with water
+    E3 --> F[Prep Bowl]
+    F --> F1[OpenDoubleDoor; param: cabinet]
+    F1 --> F2[PickPlaceCabinetToCounter; param: bowl \n Retry once]
+    F2 --> F3[CloseDoubleDoor; param: cabinet]
+    F3 -->  F4[PickPlaceCounterToSink; param: bow \n Retry once]
+    F4 --> F5[TurnOnSinkFaucet; param: sink]
+    F5 --> F6[TurnSinkSpout; param: side=right]
+    F6 --> F7[Wait; param: seconds = 5]
+    F7 --> F8[TurnOffSinkFaucet; param: sink]
+    F8 --> F9[PickPlaceSinkToCounter; param: bowl \n Retry once]
+   
+    %% place eggs to bowl
+    F9--> G[Transfer eggs & Cool]
+    G -->  G1[PickPlaceStoveToCounter; param: egg_1 \n Retry once]
+    G1 -->  G2[PlaceObject; param: src=egg_1, dst=bowl]
+    G2 --> G3[PickPlaceStoveToCounter; param: egg_2 \n Retry once]
+    G3 --> G4[PlaceObject; param: src=egg_2, dst=bowl]
+    G4 --> G5[SetTimer; param: seconds=480]
+    G5 --> G6[WaitUntil; param: timer_done]
+
+
