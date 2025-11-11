@@ -1,7 +1,43 @@
 flowchart TD
+   
+
     %% put eggs in counter
+    class A3,A7,B2,B3,B8,B9,C1,C2,F2,F4,F9,G1,G2,G3,G4 atomic;
+    style A3 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style A fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style A10 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style A7 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style B1 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style B2 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style B3 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style B4 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style B5 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style B7 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style B8 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style B9 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style B10 fill:#b9f0bb,stroke:#111,stroke-width:4px
+
+    style C1 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style C2 fill:#b9f0bb,stroke:#111,stroke-width:4px
+
+    style E3 fill:#b9f0bb,stroke:#111,stroke-width:4px
+
+    style F1 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style F2 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style F3 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style F4 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style F5 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style F6 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style F8 fill:#b9f0bb,stroke:#111,stroke-width:4px
+
+    style F9 fill:#b9f0bb,stroke:#111,stroke-width:4px
+
+    style G1 fill:#b9f0bb,stroke:#111,stroke-width:4px
+    style G3 fill:#b9f0bb,stroke:#111,stroke-width:4px
+
+
     A(OpenSingleDoor; param: fridge)
-    A --> A1{Check eggs ≥ 2?}:::fallback
+    A -->  A1{Check eggs ≥ 2?}:::fallback
     A1-->|No| D[NotifyUser]
     D -->|Fail| D1[Abort]
     A1 -->|Yes| A2[Continue]
@@ -50,7 +86,7 @@ flowchart TD
     B9_1 --> |Yes| D2[NotifyUser]
     B9_1 --> |No| B9_2[Retry]
     B9_2 --> |no_tries++| B9[PickPlaceCounterToStove; param: pot]
-    B9 --> B10[TurnOnStove \n Timeout 30s]
+    B9 --> B10[TurnOnStove Timeout 30s]
     
     %% place eggs on stove
     B10 --> |Yes| C[Add eggs]
@@ -121,4 +157,3 @@ flowchart TD
     G3 --> |SUCCESS| G4[PlaceObject; param: src=egg_2, dst=bowl]
     G4 --> G5[SetTimer; param: seconds=480]
     G5 --> G6[WaitUntil; param: timer_done]
-

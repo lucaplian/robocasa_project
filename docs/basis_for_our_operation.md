@@ -1,0 +1,2 @@
+# We should define our action through the help of an API an take an inspiration from "demo_tasks" and "demo_teleop"
+# These use the robosuite, which starts from robosuite/environmnets/base.py with EnvMeta which is mentioned as a metaclass by MujocoEnv
