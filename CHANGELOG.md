@@ -32,9 +32,9 @@ All notable changes to the **AI-Powered Analysis in Smart Home Environment** pro
 - made the diploma project with LLM (it is to be rewritten again based on my own writing, research papers etc., just serves as a base)
 
 
-## [0.2.2.1] – 2025-11-14
+## [0.2.2.1] – 2025-11-13
 ### REMOVED OBSOLETE DOCUMENTS
 - removed dataset_references.txt
-
+- added initialization flow for robosuite, helping in understanding how robosuite works
 
 
