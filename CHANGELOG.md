@@ -38,3 +38,9 @@ All notable changes to the **AI-Powered Analysis in Smart Home Environment** pro
 - added initialization flow for robosuite, helping in understanding how robosuite works
 
 
+## [0.2.2.2] – 2025-11-14
+### REFORMATING FOLDERS AND ADDED EXPLAINATION for demo_teleop
+- reformat folders, included new folder such as docs for word documents such as "ROBOCASA PROJECT 2.0 1.docx" and "robosuite_initialization_flow.docx"
+- added "robosuite_initialization_flow_teleop.docx" - explains demo_teleop from robocasa, which will serve as the basis for our implementation.
+
+
