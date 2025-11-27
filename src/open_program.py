@@ -100,12 +100,12 @@ def do_task(our_class):
                 #in state it keeps the gripper neutral, on 0.0 it is closed
         # This is a mode switch for how the arm goal is updated
             #11: action_mode:
-            # if positive, the arm updates its target based on the planned (desired) goal ("BASE MODE"),
-            # so it moves together with the mobile base.
-            # Use this when the base is moving and you want the arm to follow smoothly.
-            # if negative or zero, the arm updates its target based on its current (achieved) pose ("ARM MODE"),
-            # so it only makes small local adjustments.
-            # Use this when the base is mostly still and you just fine‑tune the arm.
+            # if positive, it is in BASE MODE. In this mode, the robot tries to follow a predefined path ("planned/desired" goal)
+            # in order to keep the hand on a trajectory. This takes into consideration scenarious 
+            # where the robot is moving, for the reason being that it assists in keeping the planned trajectory,
+            # thus providing more stable movements. It should be used when the robot is moving.
+            # if negative or zero, it is in ARM MODE. In this mode, the robot does not have a predefined path, this is local based movement. 
+            # The robot tries to do a movement based on the current state/position. It should be used when the robot stands still.
 
         if step < 200:
             action[0] = 0.0   
@@ -137,12 +137,12 @@ def do_task(our_class):
         env.render()
 
         if env._check_success():
-            print(f"TurnOnMicrowave SUCCESS at step {step}")
+            print(f"Task successful at step {step}")
             success = True
             break
 
     if not success:
-        print("TurnOnMicrowave NOT successful")
+        print("Task NOT successful")
 
     env.close()
 

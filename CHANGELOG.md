@@ -43,4 +43,9 @@ All notable changes to the **AI-Powered Analysis in Smart Home Environment** pro
 - reformat folders, included new folder such as docs for word documents such as "ROBOCASA PROJECT 2.0 1.docx" and "robosuite_initialization_flow.docx"
 - added "robosuite_initialization_flow_teleop.docx" - explains demo_teleop from robocasa, which will serve as the basis for our implementation.
 
+## [0.2.3] – 2025-11-27
+### Added demo code which opens the atomic tasks environment
+ - added open_program.py, which is a program, where it contains all the atomic tasks environment, which can be called by inputting a number from 0 to 23. Inside there is an explained action array, which contains 12 values, and all of them are explained in the order for the user to understand what each value means. Additionally, the evironment is rendered for better understanding of the tasks.
+ - added docs/Detailed Technical Explanation- Control Flow and Action Semantics.docx, which explains throughly the control flow of the environments in general and what each action means in detail.
+
 
