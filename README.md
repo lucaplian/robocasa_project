@@ -34,8 +34,15 @@ diploma/
 └── LICENSE
 
 ## Copyright
-Copyright (c) 2026 Luca Plian. All rights reserved. 
-This repository contains the partial software implementation for Luca Plian's bachelor's thesis, defended at the Faculty of Automatic Control and Computers. According to academic regulations, the copyright for the original solution belongs to the author. The use, copying, or forking of this repository is strictly prohibited without the author's written consent (contact him at plianluca6@gmail.com). The project is archived and no longer accepts contributions or modifications.
+Copyright © 2026 Luca Plian. All rights reserved.
+
+This repository contains the software implementation developed for Luca Plian's Bachelor's Thesis, defended at the Faculty of Automatic Control and Computers.
+
+In accordance with academic regulations and national copyright laws, the full ownership of the original solution, source code, and documentation belongs exclusively to the author. Any unauthorized use, copying, distribution, or modification of this work, including the creation of derivative works (forks) for purposes other than personal viewing, is strictly prohibited without the author's explicit written consent.
+
+The project is archived and is no longer open for contributions or updates.
+
+Contact: plianluca6@gmail.com
 
 
 ## 🚀 How to Run
