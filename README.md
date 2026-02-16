@@ -40,7 +40,7 @@ diploma/
 ```bash
 git clone https://github.com/lucaplian/diploma
 cd diploma
-pip install -r requirements.txt
+pip install -r requirements.txt```
 
 
 ## Copyright
