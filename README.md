@@ -34,6 +34,9 @@ diploma/
 └── LICENSE
 
 
+Copyright (c) 2026 Luca Plian. All rights reserved. 
+This repository contains the partial software implementation for Luca Plian's bachelor's thesis, defended at the Faculty of Automatic Control and Computers. According to academic regulations, the copyright for the original solution belongs to the author. The use, copying, or forking of this repository is strictly prohibited without the author's written consent (contact him at plianluca6@gmail.com). The project is archived and no longer accepts contributions or modifications.
+
 
 ## 🚀 How to Run
 
@@ -43,6 +46,8 @@ git clone https://github.com/lucaplian/diploma
 cd diploma
 pip install -r requirements.txt
 
-Copyright (c) 2026 Luca Plian. All rights reserved. 
-This repository contains the partial software implementation for Luca Plian's bachelor's thesis, defended at the Faculty of Automatic Control and Computers. According to academic regulations, the copyright for the original solution belongs to the author. The use, copying, or forking of this repository is strictly prohibited without the author's written consent (contact him at plianluca6@gmail.com). The project is archived and no longer accepts contributions or modifications.
+
+
+
+
 
